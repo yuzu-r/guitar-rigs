@@ -7,13 +7,18 @@
       <img src=<%=a[:url]%> alt='picture of guitar' />
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
-          <span class="glyphicon glyphicon-heart action like" 
-               aria-label="like" 
+          <span class='glyphicon glyphicon-heart action like'
+               aria-label='like' 
                data-axe-id=<%= axe_id %>>
           </span>
+          <% if current_user.id == @user.id %>
+            <span class="glyphicon glyphicon-trash action delete"
+                  aria-label='delete'
+                  data-axe-id=<%= axe_id %>>
+            </span>
+          <% end %>
         <% else %>
-          <span class="glyphicon glyphicon-heart action-disabled">
-          </span>
+          <span class="glyphicon glyphicon-heart action-disabled"></span>
         <% end %>       
       </p>
     </div>
@@ -40,4 +45,24 @@
       }
     })
   }));
+
+  $('.delete').on('click', (function() {
+    var axeId = $(this)[0].dataset["axeId"];
+    $.ajax ({
+      type: 'DELETE',
+      url: '/axes/' + axeId,
+      success: function(response) {
+        if (response.success) {
+          console.log(response);
+        }
+        else{
+          console.log(response);
+        }
+      },
+      error: function(response) {
+        console.log('error',response.responseText);
+      }
+    })
+  }));
+
 </script>

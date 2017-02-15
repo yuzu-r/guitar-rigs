@@ -42,6 +42,17 @@ class AxesController < ApplicationController
     end
   end
 
+  def destroy
+    puts "trying to delete #{params}"
+    axe = Axe.find_by(id: params[:id])
+    if axe && axe.user_id == current_user.id
+      axe.destroy
+    else
+      flash[:warning] = 'Not your pin!'
+    end
+    redirect_to user_rig_path(current_user.id)
+  end
+
   private
     def axe_params
       params.require(:axe).permit(:id, :url, :like_count)
