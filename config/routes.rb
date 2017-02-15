@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :axes do
     post 'toggle_like'
   end
-  get 'users/:id/rig' => 'axes#rig'
+  get 'users/:id/rig' => 'axes#rig', as: 'user_rig'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

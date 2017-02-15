@@ -33,7 +33,7 @@ class Axe < ActiveRecord::Base
   def self.rig(user_id)
     user = User.find_by(id: user_id)
     if user
-      axe_data = Axe.select("axes.id, users.id as user_id, url, username")
+      axe_data = Axe.select('axes.id, users.id as user_id, url, username')
                     .where('axes.user_id = ?', user.id)
                     .joins('inner join users on users.id = user_id')
       axes_info = axe_data.to_a.map(&:serializable_hash)
