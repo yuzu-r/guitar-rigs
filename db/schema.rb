@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213222112) do
+ActiveRecord::Schema.define(version: 20170215044750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20170213222112) do
   create_table "axes", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "url"
-    t.integer  "like_count", default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "axes", ["user_id"], name: "index_axes_on_user_id", using: :btree
@@ -41,6 +40,16 @@ ActiveRecord::Schema.define(version: 20170213222112) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "axe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["axe_id"], name: "index_likes_on_axe_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                             default: "", null: false
@@ -63,4 +72,6 @@ ActiveRecord::Schema.define(version: 20170213222112) do
 
   add_foreign_key "axes", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "likes", "axes"
+  add_foreign_key "likes", "users"
 end

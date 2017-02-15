@@ -1,8 +1,32 @@
-img.axe {
-  max-width: 200px;
+.action:hover {
+  color: silver;
 }
 
-div.axe{
+img {
+  width: 100%;
+}
+
+div.box{
   border: 1px solid black;
-  display: inline-block;
+  margin: 5px;
+  width: 214px;
+}
+
+#masonry-container {
+  background: #FFF;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+a.navbar-brand{
+  padding: 15px 0;
 }

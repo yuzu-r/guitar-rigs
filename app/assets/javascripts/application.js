@@ -18,6 +18,9 @@
 //= require components
 //= require_tree .
 //= require bootstrap-sprockets
+//= require masonry/jquery.masonry
+//= require masonry/jquery.imagesloaded.min
+//= require masonry/jquery.infinitescroll.min
 ReactRailsUJS.handleEvent('turbolinks:before-cache', function() {
   window.ReactRailsUJS.unmountComponents();
 });

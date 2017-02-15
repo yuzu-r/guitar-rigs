@@ -1,5 +1,6 @@
 class Axe < ActiveRecord::Base
   belongs_to :user
+  has_many :likes
   validate :valid_url?
   validates :user, presence: true
 
@@ -18,4 +19,21 @@ class Axe < ActiveRecord::Base
     end    
   end
 
+  def self.all_with_count
+    axes_info = Axe.all.to_a.map(&:serializable_hash)
+    axes_info = axes_info.map(&:symbolize_keys)
+    axes_info.each do |a|
+      a[:like_count] = like_count(a[:id])
+    end
+    return axes_info
+  end
+
+  def self.like_count(axe_id)
+    axe = Axe.find_by(id: axe_id)
+    if axe
+      return axe.likes.count
+    else
+      return 0
+    end    
+  end
 end

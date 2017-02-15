@@ -1,2 +1,44 @@
 <h1>Axes Index</h1>
-<%= react_component('Rig', {axes: @axes}) %>
+<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+  <% @axes.each do |a| %>
+    <% axe_id = a[:id].to_s %>
+    <% span_id = 'axe-like-count-' + axe_id %>
+    <div class="box">
+      <img src=<%=a[:url]%> alt='picture of guitar' />
+      <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
+        <% if current_user %>
+          <span class="glyphicon glyphicon-heart action like" 
+               aria-label="like" 
+               data-axe-id=<%= axe_id %>>
+          </span>
+        <% else %>
+          <span class="glyphicon glyphicon-heart action-disabled">
+          </span>
+        <% end %>       
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $('.like').on('click', (function() {
+    var axeId = $(this)[0].dataset["axeId"];
+    console.log('toggle like for', axeId);
+    $.ajax ({
+      type: 'POST',
+      url: '/axes/' + axeId + '/toggle_like',
+      success: function(response) {
+        if (response.success) {
+          var spanEl = '#axe-like-count-' + axeId;
+          $(spanEl).text(response.like_count);
+        }
+        else{
+          console.log(response);
+        }
+      },
+      error: function(response) {
+        console.log('error',response.responseText);
+      }
+    })
+  }));
+</script>

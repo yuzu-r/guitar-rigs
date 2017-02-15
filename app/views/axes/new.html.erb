@@ -1,0 +1,22 @@
+<h1>Add a new axe</h1>
+<%= form_for(@axe) do |f| %>
+  <% if @axe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@axe.errors.count, "error") %> prohibited this pin from being saved:</h2>
+      <ul>
+      <% @axe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :url %><br />
+      <%= f.text_field :url, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Axe", class: 'btn btn-primary' %>
+  </div>
+<% end %>

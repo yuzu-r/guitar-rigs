@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
   has_many :axes
+  has_many :likes
 end
