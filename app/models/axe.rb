@@ -20,12 +20,31 @@ class Axe < ActiveRecord::Base
   end
 
   def self.all_with_count
-    axes_info = Axe.all.to_a.map(&:serializable_hash)
+    axe_data = Axe.select("axes.id, users.id as user_id, url, username")
+                  .joins('inner join users on users.id = user_id')
+    axes_info = axe_data.to_a.map(&:serializable_hash)
     axes_info = axes_info.map(&:symbolize_keys)
     axes_info.each do |a|
       a[:like_count] = like_count(a[:id])
     end
     return axes_info
+  end
+
+  def self.rig(user_id)
+    user = User.find_by(id: user_id)
+    if user
+      axe_data = Axe.select("axes.id, users.id as user_id, url, username")
+                    .where('axes.user_id = ?', user.id)
+                    .joins('inner join users on users.id = user_id')
+      axes_info = axe_data.to_a.map(&:serializable_hash)
+      axes_info = axes_info.map(&:symbolize_keys)
+      axes_info.each do |a|
+        a[:like_count] = like_count(a[:id])
+      end
+      return axes_info
+    else
+      return nil
+    end
   end
 
   def self.like_count(axe_id)

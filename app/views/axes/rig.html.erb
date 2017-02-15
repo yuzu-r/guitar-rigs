@@ -1,4 +1,4 @@
-<h1>Axes Index</h1>
+<h1><%= @user.username %>'s Rig</h1>
 <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
   <% @axes.each do |a| %>
     <% axe_id = a[:id].to_s %>
@@ -15,8 +15,6 @@
           <span class="glyphicon glyphicon-heart action-disabled">
           </span>
         <% end %>       
-      </p>
-      <p><a href=<%='users/' + a[:user_id].to_s  + '/rig' %>><%= a[:username] %></a>
       </p>
     </div>
   <% end %>

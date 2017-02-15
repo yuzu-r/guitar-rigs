@@ -1,5 +1,5 @@
 class AxesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :rig]
   def index
     @axes = Axe.all_with_count
   end
@@ -31,6 +31,14 @@ class AxesController < ApplicationController
     else
       @axe.likes.create(user_id: current_user.id)
       render json: {:success => "success", :like_count => @axe.likes.count}
+    end
+  end
+
+  def rig
+    user = User.find_by(id: params[:id])
+    if user
+      @axes = Axe.rig(params[:id])
+      @user = user
     end
   end
 
