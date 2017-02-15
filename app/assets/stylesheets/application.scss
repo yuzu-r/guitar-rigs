@@ -12,7 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require 'masonry/transitions'
+ *= require 'masonry/gutters'
+ *= require 'masonry/infinitescroll'
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Bahiana|Comfortaa|Gruppo|Trade+Winds');
 @import "garden.scss";

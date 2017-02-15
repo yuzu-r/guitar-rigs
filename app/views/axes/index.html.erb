@@ -3,8 +3,11 @@
   <% @axes.each do |a| %>
     <% axe_id = a[:id].to_s %>
     <% span_id = 'axe-like-count-' + axe_id %>
+    <% error_img_url = image_url('no_image.jpg') %>
     <div class="box">
-      <img src=<%=a[:url]%> alt='picture of guitar' />
+      <img src=<%=a[:url]%> 
+           alt='picture of guitar'
+           onError=<%= 'this.src="' + error_img_url + '"' %>  />
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
           <span class="glyphicon glyphicon-heart action like" 

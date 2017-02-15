@@ -1,3 +1,14 @@
+/*
+font-family: 'Bahiana', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Gruppo', cursive;
+font-family: 'Trade Winds', cursive;
+*/
+body{
+  background-color: lightslategray;
+  font-family: 'Trade Winds', cursive;
+}
+
 .action:hover {
   color: silver;
 }
@@ -7,13 +18,15 @@ img {
 }
 
 div.box{
-  border: 1px solid black;
   margin: 5px;
+  padding: 5px;
   width: 214px;
+  border-radius: 5px;
+  background: white;
 }
 
 #masonry-container {
-  background: #FFF;
+  background: lightslategray;
   padding: 5px;
   margin-bottom: 20px;
   border-radius: 5px;
