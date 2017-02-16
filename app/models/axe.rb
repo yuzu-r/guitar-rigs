@@ -1,6 +1,6 @@
 class Axe < ActiveRecord::Base
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
   validate :valid_url?
   validates :user, presence: true
   validates :caption, length: {maximum: 100}
