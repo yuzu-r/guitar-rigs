@@ -3,6 +3,7 @@ class Axe < ActiveRecord::Base
   has_many :likes
   validate :valid_url?
   validates :user, presence: true
+  validates :caption, length: {maximum: 100}
 
   def valid_url?
     allowable_image = [:gif, :jpg, :jpeg, :png]
@@ -20,7 +21,7 @@ class Axe < ActiveRecord::Base
   end
 
   def self.all_with_count
-    axe_data = Axe.select("axes.id, users.id as user_id, url, username")
+    axe_data = Axe.select("axes.id, users.id as user_id, url, username, caption")
                   .joins('inner join users on users.id = user_id')
     axes_info = axe_data.to_a.map(&:serializable_hash)
     axes_info = axes_info.map(&:symbolize_keys)
@@ -33,7 +34,7 @@ class Axe < ActiveRecord::Base
   def self.rig(user_id)
     user = User.find_by(id: user_id)
     if user
-      axe_data = Axe.select('axes.id, users.id as user_id, url, username')
+      axe_data = Axe.select('axes.id, users.id as user_id, url, username, caption')
                     .where('axes.user_id = ?', user.id)
                     .joins('inner join users on users.id = user_id')
       axes_info = axe_data.to_a.map(&:serializable_hash)

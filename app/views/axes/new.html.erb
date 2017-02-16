@@ -15,6 +15,12 @@
       <%= f.label :url %><br />
       <%= f.text_field :url, autofocus: true, class: "form-control" %>
     </div>
+    <br />
+    <div class="field">
+      <%= f.label :caption %><em>(100 characters maximum)</em><br />
+      <%= f.text_field :caption, class: "form-control" %>
+    </div>
+
   </div>
   <div class="actions">
     <%= f.submit "Add Axe", class: 'btn btn-primary' %>

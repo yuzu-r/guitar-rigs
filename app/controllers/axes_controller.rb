@@ -56,6 +56,6 @@ class AxesController < ApplicationController
 
   private
     def axe_params
-      params.require(:axe).permit(:id, :url, :like_count)
+      params.require(:axe).permit(:id, :url, :like_count,:caption)
     end
 end
