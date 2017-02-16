@@ -11,3 +11,12 @@ $(function() {
   });
 });
 
+$(function() {
+  return $('#masonry-container-rig').imagesLoaded(function() {
+    console.log('rendering rig');
+    return $('#masonry-container-rig').masonry({
+      itemSelector: '.box',
+      isFitWidth: true
+    });
+  });
+});

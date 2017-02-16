@@ -48,9 +48,10 @@ class AxesController < ApplicationController
     if axe && axe.user_id == current_user.id
       axe.destroy
     else
-      flash[:warning] = 'Not your pin!'
+      flash[:warning] = 'Not your axe!'
     end
-    redirect_to user_rig_path(current_user.id)
+    #redirect_to user_rig_path(current_user.id)
+    render json: {:success => "success"}
   end
 
   private
