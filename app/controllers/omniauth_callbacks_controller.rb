@@ -14,7 +14,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.update_attribute(:email, @identity.email)
     end
     if @user.username.blank? && @identity.username
-      @user.update_attribute(:username, @identity.username)
+      callback_username = '@' + @identity.username
+      puts "callback username: #{callback_username}" 
+      @user.update_attribute(:username, callback_username)
     end
     if @user.persisted?
       @identity.update_attribute(:user_id, @user.id)
