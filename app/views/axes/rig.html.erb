@@ -1,5 +1,5 @@
 <h1><%= @user.username %>'s Rig</h1>
-<div id="masonry-container-rig" class="transitions-enabled infinite-scroll clearfix">
+<div id="masonry-container-rig" class="transitions-enabled clearfix">
   <% @axes.each do |a| %>
     <% axe_id = a[:id].to_s %>
     <% span_id = 'axe-like-count-' + axe_id %>
