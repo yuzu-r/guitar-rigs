@@ -40,6 +40,7 @@ class AxesController < ApplicationController
   end
 
   def rig
+    # to-do: combine code with index
     user = User.find_by(id: params[:id])
     if user
       axes = Axe.rig(params[:id])
@@ -53,7 +54,6 @@ class AxesController < ApplicationController
   end
 
   def destroy
-    puts "trying to delete #{params}"
     axe = Axe.find_by(id: params[:id])
     if axe && axe.user_id == current_user.id
       axe.destroy
