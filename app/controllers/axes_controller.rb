@@ -1,7 +1,12 @@
 class AxesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :rig]
   def index
-    @axes = Axe.all_with_count(current_user)
+    axes = Axe.all_with_count(current_user)
+    current_page = params[:page] || 1
+    @axes = WillPaginate::Collection.create(current_page, AXES_PER_PAGE, axes.length) do |pager|
+              offset = (current_page.to_i - 1) * AXES_PER_PAGE
+              pager.replace axes[pager.offset, pager.per_page]
+            end
   end
   
   def new
@@ -37,7 +42,12 @@ class AxesController < ApplicationController
   def rig
     user = User.find_by(id: params[:id])
     if user
-      @axes = Axe.rig(params[:id])
+      axes = Axe.rig(params[:id])
+      current_page = params[:page] || 1
+      @axes = WillPaginate::Collection.create(current_page, AXES_PER_PAGE, axes.length) do |pager|
+                offset = (current_page.to_i - 1) * AXES_PER_PAGE
+                pager.replace axes[pager.offset, pager.per_page]
+              end
       @user = user
     end
   end

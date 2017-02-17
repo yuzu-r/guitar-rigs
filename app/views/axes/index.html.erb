@@ -34,6 +34,10 @@
   <% end %>
 </div>
 
+<div class = "center">
+  <%= will_paginate @axes, renderer: BootstrapPagination::Rails %>
+</div>
+
 <script>
   $('.like').on('click', (function() {
     var axeEl = $(this);

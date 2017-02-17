@@ -6,7 +6,7 @@ font-family: 'Trade Winds', cursive;
 
 $background-color: #DFE0E4;
 $navbar-text-color: white;
-$navbar-text-hover-color: #7B2015;
+$navbar-text-hover-color: #42CAFD;
 $navbar-color: #616163;
 $panel-heading-color: #616163;
 
@@ -17,6 +17,10 @@ body {
 
 h1,h2,h3 {
   font-family: 'Trade Winds', cursive;
+}
+
+.center{
+  text-align: center;
 }
 
 .plain-text{
@@ -64,7 +68,7 @@ div.panel-heading{
 }
 
 .action:hover {
-  color: green;
+  color: $navbar-text-hover-color;
 }
 
 .glyphicon-trash{
