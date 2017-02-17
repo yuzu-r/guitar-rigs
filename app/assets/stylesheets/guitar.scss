@@ -1,0 +1,127 @@
+/*
+font-family: 'Bahiana', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Trade Winds', cursive;
+*/
+
+$background-color: #DFE0E4;
+$navbar-text-color: white;
+$navbar-text-hover-color: #42CAFD;
+$navbar-color: #616163;
+$panel-heading-color: #616163;
+
+body {
+  background-color: $background-color;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3 {
+  font-family: 'Trade Winds', cursive;
+}
+
+.center{
+  text-align: center;
+}
+
+.plain-text{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+}
+
+.axe-caption{
+  text-align: center;
+  margin-top: 5px;
+}
+
+div.panel-heading{
+  background-color: $panel-heading-color;
+  color: white;
+}
+
+.navbar-brand{
+  font-family: 'Trade Winds', cursive;
+}
+
+
+.navbar{
+  background-color: $navbar-color;
+}
+
+.navbar .navbar-nav > li > a{
+  color: $navbar-text-color;
+}
+
+.navbar .navbar-nav > li > a:hover{
+  color: $navbar-text-hover-color;
+}
+
+.navbar .navbar-text{
+  color: $navbar-text-color;
+}
+
+.navbar .navbar-brand {
+  color: $navbar-text-color;
+}
+
+.navbar .navbar-brand:hover {
+  color: $navbar-text-hover-color;
+}
+
+.action:hover {
+  color: $navbar-text-hover-color;
+}
+
+.glyphicon-trash{
+  float: right;
+}
+
+.axe-liked {
+  color: red;
+}
+
+hr.axe-style {
+  border-top: 1px solid $background-color;
+  text-align: center;
+}
+hr.axe-style:after {
+  content: '\01F3B8';
+  display: inline-block;
+  position: relative;
+  top: -17px;
+  padding: 5px 5px;
+  background: #ffffff;
+  font-size: 18px;
+  color: $background-color;
+}
+
+img {
+  width: 100%;
+}
+
+div.box{
+  margin: 5px;
+  padding: 5px;
+  width: 214px;
+  border-radius: 5px;
+  background: white;
+  font-family: 'Trade Winds', cursive;
+}
+
+#masonry-container, #masonry-container-rig {
+  background-color: $background-color;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+a.navbar-brand{
+  padding: 15px 0;
+}

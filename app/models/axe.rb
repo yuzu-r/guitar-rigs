@@ -20,13 +20,18 @@ class Axe < ActiveRecord::Base
     end    
   end
 
-  def self.all_with_count
+  def self.all_with_count(user)
     axe_data = Axe.select("axes.id, users.id as user_id, url, username, caption")
                   .joins('inner join users on users.id = user_id')
     axes_info = axe_data.to_a.map(&:serializable_hash)
     axes_info = axes_info.map(&:symbolize_keys)
     axes_info.each do |a|
       a[:like_count] = like_count(a[:id])
+      if user
+        a[:liked_by_user] = liked_by_user(a[:id], user.id)
+      else
+        a[:liked_by_user] = false
+      end
     end
     return axes_info
   end
@@ -41,6 +46,7 @@ class Axe < ActiveRecord::Base
       axes_info = axes_info.map(&:symbolize_keys)
       axes_info.each do |a|
         a[:like_count] = like_count(a[:id])
+        a[:liked_by_user] = liked_by_user(a[:id],user_id)
       end
       return axes_info
     else
@@ -55,5 +61,17 @@ class Axe < ActiveRecord::Base
     else
       return 0
     end    
+  end
+
+  def self.liked_by_user(axe_id, user_id=nil)
+    axe = Axe.find_by(id: axe_id)
+    return false if !user_id || !axe
+    user = User.find_by(id: user_id)
+    if user
+      likes = axe.likes.where('user_id = ?', user_id).count
+      return likes > 0 ? true : false
+    else
+      return false
+    end
   end
 end
