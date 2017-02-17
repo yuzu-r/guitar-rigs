@@ -8,13 +8,20 @@
       <img src=<%=a[:url]%> 
            alt='picture of guitar'
            onError=<%= 'this.src="' + error_img_url + '"' %>  />
-      <p><%= a[:caption] %></p>
+      <p class='axe-caption'><%= a[:caption] %></p>
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
-          <span class="glyphicon glyphicon-heart action like" 
-               aria-label="like" 
-               data-axe-id=<%= axe_id %>>
-          </span>
+          <% if a[:liked_by_user] %>
+            <span class='glyphicon glyphicon-heart action like axe-liked'
+                 aria-label='like' 
+                 data-axe-id=<%= axe_id %>>
+            </span>
+          <% else %>
+            <span class='glyphicon glyphicon-heart action like'
+                 aria-label='like' 
+                 data-axe-id=<%= axe_id %>>
+            </span>          
+          <% end %>
         <% else %>
           <span class="glyphicon glyphicon-heart action-disabled">
           </span>
@@ -27,7 +34,8 @@
 
 <script>
   $('.like').on('click', (function() {
-    var axeId = $(this)[0].dataset["axeId"];
+    var axeEl = $(this);
+    var axeId = axeEl[0].dataset["axeId"];
     $.ajax ({
       type: 'POST',
       url: '/axes/' + axeId + '/toggle_like',
@@ -35,6 +43,7 @@
         if (response.success) {
           var spanEl = '#axe-like-count-' + axeId;
           $(spanEl).text(response.like_count);
+          axeEl.toggleClass('axe-liked');
         }
         else{
           console.log(response);

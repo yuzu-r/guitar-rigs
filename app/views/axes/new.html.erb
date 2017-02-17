@@ -1,28 +1,36 @@
-<h1>Add a new axe</h1>
-<%= form_for(@axe) do |f| %>
-  <% if @axe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@axe.errors.count, "error") %> prohibited this pin from being saved:</h2>
-      <ul>
-      <% @axe.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class='col-xs-10 col-xs-offset-1 coll-sm-8 coll-sm-offset-2'>
+  <h2>Add a new axe</h2>
+  <p>Provide a URL to a jpg (jpeg), png or gif. Caption is optional.</p>
+  <%= form_for(@axe) do |f| %>
+    <% if @axe.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@axe.errors.count, "error") %> prohibited this axe from being saved:</h2>
+        <ul>
+        <% @axe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :url %><br />
+        <%= f.text_field :url, 
+                         autofocus: true, 
+                         placeholder: 'http://i.imgur.com/UsTEy6z.jpg',
+                         class: "form-control" %>
+      </div>
+      <br />
+      <div class="field">
+        <%= f.label :caption %> <em>(100 characters maximum)</em><br />
+        <%= f.text_field :caption, 
+                         placeholder: 'Tone for days.',
+                         class: "form-control" %>
+      </div>
+    </div>
+    <br/>
+    <div class="actions">
+      <%= f.submit "Add Axe", class: 'btn btn-primary' %>
     </div>
   <% end %>
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :url %><br />
-      <%= f.text_field :url, autofocus: true, class: "form-control" %>
-    </div>
-    <br />
-    <div class="field">
-      <%= f.label :caption %><em>(100 characters maximum)</em><br />
-      <%= f.text_field :caption, class: "form-control" %>
-    </div>
-
-  </div>
-  <div class="actions">
-    <%= f.submit "Add Axe", class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

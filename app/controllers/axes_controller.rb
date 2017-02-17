@@ -1,7 +1,7 @@
 class AxesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :rig]
   def index
-    @axes = Axe.all_with_count
+    @axes = Axe.all_with_count(current_user)
   end
   
   def new

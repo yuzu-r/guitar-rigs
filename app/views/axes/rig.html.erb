@@ -8,12 +8,20 @@
       <img src=<%=a[:url]%> 
            alt='picture of guitar'
            onError=<%= 'this.src="' + error_img_url + '"' %>  />
+      <p class='axe-caption'><%= a[:caption] %></p>
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
-          <span class='glyphicon glyphicon-heart action like'
-               aria-label='like' 
-               data-axe-id=<%= axe_id %>>
-          </span>
+          <% if a[:liked_by_user] %>
+            <span class='glyphicon glyphicon-heart action like axe-liked'
+                 aria-label='like' 
+                 data-axe-id=<%= axe_id %>>
+            </span>
+          <% else %>
+            <span class='glyphicon glyphicon-heart action like'
+                 aria-label='like' 
+                 data-axe-id=<%= axe_id %>>
+            </span>          
+          <% end %>
           <% if current_user.id == @user.id %>
             <span class="glyphicon glyphicon-trash action delete"
                   aria-label='delete'
@@ -30,6 +38,7 @@
 
 <script>
   $('.like').on('click', (function() {
+    var axeEl = $(this);
     var axeId = $(this)[0].dataset["axeId"];
     $.ajax ({
       type: 'POST',
@@ -38,6 +47,7 @@
         if (response.success) {
           var spanEl = '#axe-like-count-' + axeId;
           $(spanEl).text(response.like_count);
+          axeEl.toggleClass('axe-liked');
         }
         else{
           console.log(response);

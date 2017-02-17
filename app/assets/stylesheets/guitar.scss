@@ -20,6 +20,10 @@ h1,h2,h3 {
   font-family: 'Trade Winds', cursive;
 }
 
+.axe-caption{
+  text-align: center;
+}
+
 div.panel-heading{
   background-color: $panel-heading-color;
   color: white;
@@ -55,7 +59,11 @@ div.panel-heading{
 }
 
 .action:hover {
-  color: $navbar-text-hover-color;
+  color: green;
+}
+
+.axe-liked {
+  color: red;
 }
 
 img {
