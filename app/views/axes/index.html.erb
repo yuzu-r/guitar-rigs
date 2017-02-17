@@ -1,4 +1,3 @@
-<h1>Axes Index</h1>
 <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
   <% @axes.each do |a| %>
     <% axe_id = a[:id].to_s %>
@@ -8,7 +7,7 @@
       <img src=<%=a[:url]%> 
            alt='picture of guitar'
            onError=<%= 'this.src="' + error_img_url + '"' %>  />
-      <p class='axe-caption'><%= a[:caption] %></p>
+      <p class='axe-caption'><%= a[:caption] %></p>    
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
           <% if a[:liked_by_user] %>
@@ -27,7 +26,10 @@
           </span>
         <% end %>       
       </p>
-      <p><%= link_to a[:username], user_rig_path(a[:user_id]) %></p>
+      <p>
+        <span class='plain-text'>shared by </span>
+        <%= link_to a[:username], user_rig_path(a[:user_id]) %>
+      </p>
     </div>
   <% end %>
 </div>

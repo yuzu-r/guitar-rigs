@@ -9,6 +9,8 @@
            alt='picture of guitar'
            onError=<%= 'this.src="' + error_img_url + '"' %>  />
       <p class='axe-caption'><%= a[:caption] %></p>
+      <hr class='axe-style'/>
+      <div>
       <p><span class='likes' id=<%= span_id %>><%= a[:like_count] %></span>
         <% if current_user %>
           <% if a[:liked_by_user] %>
@@ -32,6 +34,7 @@
           <span class="glyphicon glyphicon-heart action-disabled"></span>
         <% end %>       
       </p>
+      </div>
     </div>
   <% end %>
 </div>
